@@ -1,0 +1,116 @@
+version: 2
+
+sources:
+  - name: citibike_reset
+    database: citibike_reset
+    schema: citibike_reset_v3
+    loader: Share # informational only (free text)
+
+    tables:
+      - name: trips
+        description: TRIPS source table custom description
+
+      - name: weather_json
+        description: WEATHER_JSON source table custom description
+
+models:
+  # demo
+  - name: stations
+    description: '{{ doc("stations_overview") }}'
+    columns:
+      - name: station_id
+        description: '{{ doc("stations_station_id_comment") }}'
+        tests:
+          - not_null
+          - unique
+
+      - name: station_name
+        description: STATION_NAME column custom description
+
+      - name: station_lat
+        description: STATION_LAT column custom description
+
+      - name: station_lon
+        description: STATION_LON column custom description
+
+      - name: station_geo
+        description: STATION_GEO column custom description
+
+      - name: station_type
+        description: STATION_TYPE column custom description
+        tests:
+          - accepted_values:
+              values: ['classic']
+
+      - name: station_capacity
+        description: STATION_CAPACITY column custom description
+
+      - name: rental_methods
+        description: RENTAL_METHODS column custom description
+
+      - name: region_name
+        description: REGION_NAME column custom description
+        tests:
+          - accepted_values:
+              values: ['NYC District', 'JC District']
+
+      - name: borough_name
+        description: BOROUGH_NAME column custom description
+
+      - name: neighborhood_name
+        description: NEIGHBORHOOD_NAME column custom description
+
+  - name: trips_incremental
+    description: TRIPS_INCREMENTAL table custom description
+
+  - name: trips_stations_vw
+    description: TRIPS_STATIONS_VW table custom description
+
+  - name: trips_stations_weather_vw
+    description: TRIPS_STATIONS_WEATHER_VW table custom description
+
+  - name: trips
+    description: TRIPS table custom description
+    columns:
+      - name: tripduration
+        description: TRIPDURATION column custom description
+
+      - name: starttime
+        description: STARTTIME column custom description
+
+      - name: stoptime
+        description: STOPTIME column custom description
+
+      - name: start_station_id
+        description: START_STATION_ID column custom description
+
+      - name: end_station_id
+        description: END_STATION_ID column custom description
+
+      - name: bikeid
+        description: BIKEID column custom description
+
+      - name: usertype
+        description: USERTYPE column custom description
+
+      - name: birth_year
+        description: BIRTH_YEAR column custom description
+
+      - name: gender
+        description: GENDER column custom description
+
+  - name: weather
+    description: WEATHER table custom description
+
+  # utils
+  - name: gbfs_json
+    description: GBFS_JSON table custom description
+
+  - name: neighborhood_json
+    description: NEIGHBORHOOD_JSON table custom description
+
+  - name: region_json
+    description: REGION_JSON table custom description
+
+  - name: station_json
+    description: STATION_JSON table custom description

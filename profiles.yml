@@ -1,0 +1,15 @@
+# For more information on how to configure this file, please see:
+# https://docs.getdbt.com/dbt-cli/configure-your-profile
+
+snowflake-demo:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
+      warehouse: load_wh
+      database: citibike
+      schema: demo
+      threads: 1

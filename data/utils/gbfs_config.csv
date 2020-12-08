@@ -1,0 +1,4 @@
+data,url
+regions,https://gbfs.citibikenyc.com/gbfs/en/system_regions.json
+stations, https://gbfs.citibikenyc.com/gbfs/en/station_information.json
+neighborhoods, https://snowflake-demo-stuff.s3.amazonaws.com/neighborhoods.geojson
