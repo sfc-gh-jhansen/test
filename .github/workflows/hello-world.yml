@@ -37,3 +37,5 @@ jobs:
         run: |
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           echo "REPOSITORY_SECRET: $REPOSITORY_SECRET"
+          echo "ENVIRONMENT_SECRET: $ENVIRONMENT_SECRET"
+          ls GITHUB_WORKSPACE
