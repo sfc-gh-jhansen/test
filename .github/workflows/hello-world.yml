@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: hello-world-workflow
 
 # Controls when the action will run. 
@@ -15,14 +13,10 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   hello-world-job:
-    environment: dev
-
-    # The type of runner that the job will run on
+    environment: Dev
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
@@ -38,11 +32,11 @@ jobs:
           REPOSITORY_SECRET: ${{ secrets.REPOSITORY_SECRET }}
           ENVIRONMENT_SECRET: ${{ secrets.ENVIRONMENT_SECRET }}
         run: |
-          echo "REPOSITORY_SECRET: $REPOSITORY_SECRET"
-          echo "ENVIRONMENT_SECRET: $ENVIRONMENT_SECRET"
-
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           python --version
 
           echo "Step 1: Installing snowchange"
           pip install snowchange
+          
+          echo "Step 2: Running snowchange"
+          snowchange
