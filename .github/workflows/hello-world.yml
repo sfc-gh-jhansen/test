@@ -29,8 +29,12 @@ jobs:
 
       - name: Run snowchange
         env:
-          REPOSITORY_SECRET: ${{ secrets.REPOSITORY_SECRET }}
-          ENVIRONMENT_SECRET: ${{ secrets.ENVIRONMENT_SECRET }}
+          SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
+          SF_USERNAME: ${{ secrets.SF_USERNAME }}
+          SF_PASSWORD: ${{ secrets.SF_PASSWORD }}
+          SF_ROLE: ${{ secrets.SF_ROLE }}
+          SF_WAREHOUSE: ${{ secrets.SF_WAREHOUSE }}
+          SF_DATABASE: ${{ secrets.SF_DATABASE }}
         run: |
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           python --version
@@ -39,4 +43,4 @@ jobs:
           pip install snowchange
           
           echo "Step 2: Running snowchange"
-          snowchange
+          snowchange -f $PROJECT_FOLDER/migrations -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SNOWCHANGE.CHANGE_HISTORY --create-change-history-table
