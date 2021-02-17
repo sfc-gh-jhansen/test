@@ -25,19 +25,24 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Use Python 3.8.x
+        uses: actions/setup-python@v2.2.1
+        with:
+          python-version: 3.8.x
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Run snowchange
         env:
           REPOSITORY_SECRET: ${{ secrets.REPOSITORY_SECRET }}
           ENVIRONMENT_SECRET: ${{ secrets.ENVIRONMENT_SECRET }}
         run: |
-          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           echo "REPOSITORY_SECRET: $REPOSITORY_SECRET"
           echo "ENVIRONMENT_SECRET: $ENVIRONMENT_SECRET"
-          ls $GITHUB_WORKSPACE
+
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          python --version
+
+          echo "Step 1: Installing snowchange"
+          pip install snowchange
