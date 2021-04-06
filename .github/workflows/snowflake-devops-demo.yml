@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: 3.8.x
 
-      - name: Run snowchange
+      - name: Run schemachange
         env:
           SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
           SF_USERNAME: ${{ secrets.SF_USERNAME }}
@@ -37,8 +37,8 @@ jobs:
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           python --version
 
-          echo "Step 1: Installing snowchange"
-          pip install snowchange
+          echo "Step 1: Installing schemachange"
+          pip install schemachange
           
-          echo "Step 2: Running snowchange"
-          snowchange -f $GITHUB_WORKSPACE/migrations -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SNOWCHANGE.CHANGE_HISTORY --create-change-history-table
+          echo "Step 2: Running schemachange"
+          schemachange -f $GITHUB_WORKSPACE/migrations -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SNOWCHANGE.CHANGE_HISTORY --create-change-history-table
